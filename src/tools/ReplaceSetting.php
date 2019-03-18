@@ -39,9 +39,8 @@ class ReplaceSetting
         $this->_record = \PF::app()->getDb()->getFindBuilder()
             ->setTable('pub_replace_setting')
             ->setSelect(['template', 'content', 'replace_type', 'replace_fields'])
-            ->addWhere('`key`=:key AND `is_enable`=:is_enable')
+            ->addWhere('`key`=:key')
             ->addParam(':key', $key)
-            ->addParam(':is_enable', 1)
             ->queryRow();
         if (empty($this->_record)) {
             throw new HttpException(str_cover('找不到替换模版"{key}"', [
